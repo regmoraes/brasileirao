@@ -1,6 +1,6 @@
 # Brasileirão
 
-A very simple app where users can see matches and matches insights of the Brasileirão Championship.
+A very simple app where users can see **fake** data of matches and matches insights of the Brasileirão Championship.
 
 <p float="left">
 <img width="40%" vspace="20" hspace="20" src="https://user-images.githubusercontent.com/4440882/83931697-82292180-a774-11ea-8576-e0559d685950.png" />
