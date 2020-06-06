@@ -6,6 +6,7 @@ A very simple app where users can see matches and matches insights of the Brasil
 <img width="40%" vspace="20" hspace="20" src="https://user-images.githubusercontent.com/4440882/83931697-82292180-a774-11ea-8576-e0559d685950.png" />
 <img width="40%" vspace="20" hspace="20" src="https://user-images.githubusercontent.com/4440882/83931702-85bca880-a774-11ea-8538-2155beaefc84.png" />
 </p>
+
 ## Use Cases
 
 - The user can see a list of matches with their date and score;
