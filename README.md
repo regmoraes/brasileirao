@@ -2,59 +2,51 @@
 
 A very simple app where users can see matches and matches insights of the Brasileirão Championship.
 
-Be advised that all data
+<p float="left">
+<img width="40%" vspace="20" hspace="20" src="https://user-images.githubusercontent.com/4440882/83931697-82292180-a774-11ea-8576-e0559d685950.png" />
+<img width="40%" vspace="20" hspace="20" src="https://user-images.githubusercontent.com/4440882/83931702-85bca880-a774-11ea-8538-2155beaefc84.png" />
+</p>
 ## Use Cases
 
-- The user cant see a list of matches
+- The user can see a list of matches with their date and score;
 - Tapping on a match show a detailed view of the match with match insights (best moment and time)
--- The detailed view is updated automatically once a new insight is registered on Firebase RealtimeDB
+-- The insights are updated automatically once new events are registered on Firebase Realtime DB.
 
 ## Running
-
+The project was made with Flutter + Dart, but can run only on Android due to platform specific Firebase's configuration.
 | ⚠️   Warning                                                                                                                 |
 | :---------------------------------------------------------------------------|
 | The project uses Firebase Realtime Database to store data but all secrets were removed from the repo.
 
-The project was made with Flutter + Dart, but can run only on Android due to platform specific Firebase's configuration.
+
 
 ## Architecture
 
-"Perfection is achieved, not when there is nothing more to add, but when there is nothing left to take away". With this in mind the code was made to be as simple and straightforward as possible, but not abdicating of some good patterns and practices.
-
-The project was divided into three packages, each one representing a layer (domain, data, presentation):
-
-- **model**: Data models and mappings. Equivalent to the domain layer.
-- **graphql**: GraphQL client and Repository Implementation. Equivalent to the data layer.
-- **presentation**: Widgets, pages, BLoCs and states. The presentation layer.
-
 Due to the reactive nature of Flutter applications, the BLoC pattern was used. The BLoC pattern works with the concept of Data/Event Streams and Stream Subscribers, working in the same way as the MVI(Model-View-Intent) and MVVM(Model-View-ViewModel) patterns.
 
-The overall app architechture is as follows
+### Structure 
+The project pacakges were structured according to "types and responsibilities", so each pacakge contains files of the "package type".
 
-![marketplace_arch](https://user-images.githubusercontent.com/4440882/77957826-7cade780-72aa-11ea-8cdc-cea6727fbd08.png)
+- **blocs**: BLoCs responsible for controlling/managing flow of data and state in the app.
+- **model**: Basic domain models used to represent data from Firebase Realtime DB.
+- **pages**: Pages/Screens of the app.
+- **repository**: Repository interface and implementation.
+- **widgets**: Widgets that are used to compose pages.
 
-## Tests
-Tests (and coding) were made using the Behavior-driven Development approach to ensure the use cases were working as expected. Tests were made to cover the 3 layers, so covering Widgets behavior, data consuming and management and data fetching.
+### Components
 
-## Design Rationale
+The main components of the application are:
 
-As good as showing why something was made, it's important to show why something was **not** made.
+- **MatchBloc**: Core component, responsible for controlling/managing flow of data and state in the app. The receives calls from Pages/Widgets and emits events for matches (`MatchEvent`) and insights (`InsightEvent`);
 
-**Why just one BLoC?**
+- **MatchesPage**: Page that requests and shows matches insights, and listen to `MatchEvent`s stream emitted by `MatchBloc`;
 
-Although it's recommended to have one BLoC per page and to share data between them through a shared stateful repository, to maintain simplicity and reduce communication overhead, only one BLoC was used. This BLoC holds and shares states with all pages.
+- **InsightsPage**: Page that requests and shows matches, and listen to `InsightEvent`s stream emitted by `MatchBloc`;
 
-**Why not use interfaces to promote Dependency Inversion between layers?**
+- **MatchRepository**: Interface for a repository that provides `Match` related data;
 
-In most cases, interfaces are only useful for runtime polymorphism, so if you have an InterfaceImpl class, think twice. Interfaces as an excuse to make testing easier is not solid, as it's possible to Mocks classes and to perform custom injections if correct single responsibility pattern and referential transparency is implemented. In addition, Dart allows classes to be implemented as interface, thus forcing the use of their behavior instead of their implementation.
+- **FirebaseRealtimeDb**: Firebase Realtime Database implementation of `MatchRepository`;
 
-**Why not use Dependency Injection?**
+The image below shows how the components are connected
 
-Dependency Injection is useful when you have a complex dependency graph with complex object creation and/or when you want to provide scoped dependencies that aren't application wide. Since all the data of the app is shared and consumed by the two pages and this data is application wide, there's no need for a DI Framework/Library.
-
-
-**Why not use Repository + Data Source?**
-
-The main advantage of using repositories + data source is to provide multiple data sources and to isolate data models from domain models and their mappings. Since this app has simple models, no complex runtime business rules validation, and uses dynamic data from GraphQL with in memory cache, the problems of defining, retrieving and manipulating data are reduced, and there's no need to add these kind of abstractions.
-
-I hope you enjoy the code review ;)
+<img align="center" src="https://user-images.githubusercontent.com/4440882/83931617-fc0cdb00-a773-11ea-8f9b-d8fcb5503b71.png" width="600" height="400"/>
