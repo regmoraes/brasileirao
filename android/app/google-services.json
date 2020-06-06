@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "368194347341",
+    "firebase_url": "https://regmoraes-brasileirao.firebaseio.com",
+    "project_id": "regmoraes-brasileirao",
+    "storage_bucket": "regmoraes-brasileirao.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:368194347341:android:5d2390c21525735ccd5704",
+        "android_client_info": {
+          "package_name": "br.com.regmoraes.brasileirao"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "368194347341-ognepadgdv9g4mkrvdv8s981b0kqn5rk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.regmoraes.brasileirao",
+            "certificate_hash": "382759508be45b7882efce0ab7f9ff5edf9ee451"
+          }
+        },
+        {
+          "client_id": "368194347341-ociqus6ujbopk7qr09mubkbvsvpu2av7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5xzpUCkql9oRcnOXJU5VZxAjAiX3__7o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "368194347341-ociqus6ujbopk7qr09mubkbvsvpu2av7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
